@@ -1,4 +1,9 @@
+import 'package:ecommapp/main.dart';
+import 'package:ecommapp/pages/addproduct.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_state_manager/src/simple/get_responsive.dart';
+import 'package:get/instance_manager.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -12,12 +17,27 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(onPressed: (){
-          Navigator.pop(context);
-        }, icon: Icon(Icons.arrow_back_ios)),
+       
         centerTitle: true,
-        title: Text("Ecommerce"),
+        title: Text("Product List"),
       ),
+      body: ListView.builder(
+        itemCount: 10,
+        itemBuilder: (context,index){
+        return ListTile(
+          title: Text("Product name"),
+          subtitle: Text("price"),
+          trailing: IconButton(onPressed: (){
+            
+          }, icon: Icon(Icons.delete)),
+        );
+      }),
+      floatingActionButton: FloatingActionButton(onPressed: (){
+        Get.to(AddProductPage());
+      },
+      child: Icon(Icons.add),
+      ),
+    
     );
   }
 }
