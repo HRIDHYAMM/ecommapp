@@ -16,14 +16,17 @@ class HomeController extends GetxController {
   TextEditingController pricecontrooler=TextEditingController();
 
 
-  String category="General";
-  String brand="Un_Branded";
+  String category="Category";
+  String brand="Brand";
   bool offer=false;
 
+  List<Products>product=[];
+
   @override
-  void onInit() {
+  void onInit() async{
     super.onInit();
     productCollectionReference = firestore.collection('Products');
+    await fetchProduct();
   }
 
   void addProduct() {
@@ -49,7 +52,9 @@ class HomeController extends GetxController {
         "Success",
         "Product added successfully",
         colorText: Colors.green,
+        
       );
+      SetvalueasDefalut();
     } catch (e) {
       Get.snackbar(
         "Error",
@@ -58,5 +63,41 @@ class HomeController extends GetxController {
       );
       print(e);
     }
+  }
+  SetvalueasDefalut(){
+ productnamecontrooler.clear();
+    descriptioncontrooler.clear();
+    imageurlcontroller.clear();
+ pricecontrooler.clear();
+
+  category="Category";
+   brand="Brand";
+ offer=false;
+ update();
+  }
+ 
+  fetchProduct()async{
+   try{
+     QuerySnapshot productSnapshot=await productCollectionReference.get();
+    final List<Products>retriveproducts=productSnapshot.docs.map((doc)=>Products.fromJson(doc.data() 
+    as Map<String,dynamic>)).toList();
+    product.clear();
+    product.assignAll(retriveproducts);
+    Get.snackbar("Suceess", "Product fetch suceesfully");
+   }catch(e){
+Get.snackbar("Error", e.toString());
+   }finally{
+update();
+   }
+  }
+
+  deleteproduct(String id)async{
+     try{
+      await productCollectionReference.doc(id).delete();
+     fetchProduct();
+    
+     }catch(e){
+ Get.snackbar("Error", e.toString(),colorText: Colors.red);
+     }
   }
 }

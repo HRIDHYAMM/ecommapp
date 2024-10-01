@@ -136,20 +136,20 @@ class AddproductPage extends StatelessWidget {
                   ),
                 Row(
                   children: [
-                     Flexible(child: Dropdownbtn(items: ["Cat1","Cat2","Cat3"],
+                     Flexible(child: Dropdownbtn(items: ["Clog","Boat shoes","Ballet flats","Chelsea boots","Kitten heels","Loafers","Combat boots"],
                      SelectedItemName: addproduct.category,
                      
                     onChangedValue: (selectedItem){
                    
-                      addproduct.category=selectedItem ?? "General";
+                      addproduct.category=selectedItem ?? "Category";
                       addproduct.update();
                     },
                      )),
-                       Flexible(child: Dropdownbtn(items: ["brand1","brand2","brand3"],
+                       Flexible(child: Dropdownbtn(items: ["Adidas","Nike","Skechers","Bata","Red Tape","Woodland","Crocs","PUMA","Reebok"],
                        SelectedItemName: addproduct.brand,
                        onChangedValue: (selectedItem){
                       
-                        addproduct.brand=selectedItem ?? "Un_Branded";
+                        addproduct.brand=selectedItem ?? "Brand";
                         addproduct.update();
                        },
                         ))

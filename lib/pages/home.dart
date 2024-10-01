@@ -19,15 +19,18 @@ class HomePage extends StatelessWidget {
             ),),
           ),
           body: ListView.builder(
-            itemCount: 10,
+            itemCount: home.product.length,
             itemBuilder: (context,index){
               
             return ListTile(
-              trailing: IconButton(onPressed: (){
-            
-              }, icon: Icon(Icons.delete,color: Colors.red,)),
-              title: Text("Name"),
-              subtitle: Text("Price"),
+              trailing: IconButton( icon: Icon(Icons.delete,color: Colors.red,),
+              onPressed: (){
+           home.product[index].id?? '';
+              },
+             
+              ),
+              title: Text(home.product[index].name??''),
+              subtitle:Text(home.product[index].price.toString()),
             );
           }),
           floatingActionButton: FloatingActionButton(onPressed: (){
@@ -39,4 +42,5 @@ class HomePage extends StatelessWidget {
       }
     );
   }
+  
 }
