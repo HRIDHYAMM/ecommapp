@@ -1,7 +1,9 @@
 import 'package:ecommapp/customer_product.dart';
+import 'package:ecommapp/customer_productdescription.dart';
 import 'package:ecommapp/widget/customer_multidropdownbtn.dart';
 import 'package:ecommapp/widget/dropdownbtn.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CustomerHomepage extends StatelessWidget {
   const CustomerHomepage({super.key});
@@ -67,7 +69,10 @@ SizedBox(
                     name: 'Puma',
                      imageurl: 'https://images.pexels.com/photos/19090/pexels-photo.jpg?cs=srgb&dl=pexels-webdonut-19090.jpg&fm=jpg', 
                      offertag: '50% Off', 
-                     price: 200,
+                     price: 200, 
+                     onTap: (){
+                      Get.to(CustomerProductdescription());
+                     },
                     
                     
                   );
